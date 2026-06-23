@@ -11,7 +11,7 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: ['http://localhost:5173', process.env.FRONTEND_URL].filter(Boolean),
+  origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(u => u.trim()) : '*',
   credentials: true,
 }));
 app.use(express.json());
